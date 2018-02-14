@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
- get '/' => 'welcome#home'
+ root to: 'welcome#home'
+ get '/signup', to: 'users#new', as: 'signup'
+ resources :users, except: :new
 
 end
