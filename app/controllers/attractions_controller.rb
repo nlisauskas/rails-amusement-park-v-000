@@ -13,7 +13,7 @@ class AttractionsController < ApplicationController
     @user = ride.user
     @attraction = ride.attraction
     @message = ride.take_ride
-    redirect_to user_path(session[:user_id], :message => @message)
+    redirect_to user_path(session[:user_id])
   end
 
 end
