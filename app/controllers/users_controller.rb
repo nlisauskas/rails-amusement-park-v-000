@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :signed_in?, only: [:show]
+
   def new
     @user = User.new
   end
@@ -7,18 +9,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-    redirect_to @user
+      redirect_to @user
     else
       redirect_to signup_path
     end
   end
 
   def show
-    if logged_in?
-    @user = User.find_by(params[:id])
-  else
-      redirect_to root_path
-    end
+    @user = current_user
   end
 
   def login
@@ -28,11 +26,13 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :height, :happiness, :nausea, :tickets, :password, :password_confirmation)
+    params.require(:user).permit(:name, :height, :happiness, :nausea, :tickets, :password, :admin, :password_confirmation)
   end
 
-  def logged_in?
-    current_user.id == session[:user_id]
+  def signed_in?
+    if !session[:user_id]
+      redirect_to root_path
+    end
   end
 
 
