@@ -3,6 +3,10 @@ class AttractionsController < ApplicationController
     @attractions = Attraction.all
   end
 
+  def new
+    @attraction = Attraction.new
+  end
+
   def show
     @attraction = Attraction.find_by_id(params[:id])
     @user = session[:user_id]
