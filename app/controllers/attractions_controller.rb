@@ -10,10 +10,7 @@ class AttractionsController < ApplicationController
 
   def ride
     ride = Ride.create(attraction_id: params[:attraction_id], user_id: session[:user_id])
-    ride.user.tickets -= ride.attraction.tickets
-    ride.user.nausea += ride.attraction.nausea_rating
-    ride.user.happiness += ride.attraction.happiness_rating
-    ride.user.save
+    ride.take_ride
     redirect_to user_path(session[:user_id])
   end
 
