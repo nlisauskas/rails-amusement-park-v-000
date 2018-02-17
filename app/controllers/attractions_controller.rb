@@ -7,6 +7,11 @@ class AttractionsController < ApplicationController
     @attraction = Attraction.new
   end
 
+  def create
+    @attraction = Attraction.new(attraction_params)
+    redirect_to attraction_path(@attraction)
+  end
+
   def show
     @attraction = Attraction.find_by_id(params[:id])
     @user = session[:user_id]
@@ -18,6 +23,11 @@ class AttractionsController < ApplicationController
     @attraction = ride.attraction
     flash[:notice] = ride.take_ride
     redirect_to user_path(session[:user_id])
+  end
+
+  private
+  def attraction_params
+    params.require(:attraction).permit(:name, :min_height, :happiness_rating, :nausea_rating, :tickets)
   end
 
 end
