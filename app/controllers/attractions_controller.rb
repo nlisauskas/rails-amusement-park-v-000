@@ -12,7 +12,7 @@ class AttractionsController < ApplicationController
     ride = Ride.create(attraction_id: params[:attraction_id], user_id: session[:user_id])
     @user = ride.user
     @attraction = ride.attraction
-    @message = ride.take_ride
+    flash[:notice] = ride.take_ride
     redirect_to user_path(session[:user_id])
   end
 
