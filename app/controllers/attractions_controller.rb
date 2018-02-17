@@ -27,6 +27,7 @@ class AttractionsController < ApplicationController
   end
 
   def edit
+    @attraction = Attraction.find_by_id(params[:id])
   end
 
   private
