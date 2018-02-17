@@ -4,7 +4,10 @@ Rails.application.routes.draw do
  get '/users/new', to: 'users#new', as: 'signup'
  get '/signin', to: 'users#login'
  resources :sessions, only: [:create]
- delete '/logout', to: 'sessions#destroy'
+ get '/logout', to: 'sessions#destroy'
  resources :users, except: :new
+ resources :rides
+ resources :attractions
+ match '/attractions/:id/ride', to: 'attractions#ride', via: :post, as: :ride_attraction
 
 end
