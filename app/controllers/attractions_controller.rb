@@ -26,6 +26,9 @@ class AttractionsController < ApplicationController
     redirect_to user_path(session[:user_id])
   end
 
+  def edit
+  end
+
   private
   def attraction_params
     params.require(:attraction).permit(:name, :min_height, :happiness_rating, :nausea_rating, :tickets)
