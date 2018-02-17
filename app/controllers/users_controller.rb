@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @message = params[:message] if params[:message]
+    @message ||= false
   end
 
   def login
