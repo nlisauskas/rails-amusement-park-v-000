@@ -1,5 +1,7 @@
-<% if @message %>
-<%= @message %>
+<% if flash[:notice] %>
+<div class="notice">
+  <%= flash[:notice] %>
+</div>
 <% end %>
 Name: <%= @user.name %>
 Height: <%= @user.height %>
