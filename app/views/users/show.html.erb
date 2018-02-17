@@ -1,3 +1,6 @@
+<%= if @message != nil && @message != '' %>
+<%= @message %>
+<% end %>
 Name: <%= @user.name %>
 Height: <%= @user.height %>
 Mood: <%= @user.mood %>
